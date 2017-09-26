@@ -25,11 +25,15 @@ return [
      | To override any of these settings for a specific merchant account, just put the same
      | in the account specific settings array in the "Merchant Accounts" section below.
      |
+     | NOTE: Typically the values for most of the below config values will be coming from environment
+     | configuration. It is advisable to store all sensitive credentials (like username, password etc.)
+     | in the environment file (.env). Example: env('ADYEN_PASSWORD')
+     |
      */
 
     'settings' => [
-        'username' => 'REPLACE_WITH_YOUR_USERNAME',
-        'password' => 'REPLACE_WITH_YOUR_PASSWORD',
+        'username' => 'REPLACE_WITH_YOUR_WEBSERVICE_USERNAME',
+        'password' => 'REPLACE_WITH_YOUR_WEBSERVICE_PASSWORD',
         'environment' => \Adyen\Environment::TEST, // For production use \Adyen\Environment::LIVE
         'skinCode' => 'REPLACE_WITH_YOUR_SKINCODE',
         'hmacSignature' => 'REPLACE_WITH_YOUR_SIGNATURE',
@@ -50,9 +54,8 @@ return [
     | Please note that the merchant account is different from the company account;
     | a company account can have one or more merchant accounts in Adyen.
     |
-    | NOTE: Typically the values for most of the below config values will be coming from environment
-    | configuration. It is advisable to store all sensitive credentials (like username, password etc.)
-    | in the environment file (.env). Example: env('ADYEN_PASSWORD')
+    | NOTE: Merchant Account specific settings are merged with the "settings" array defined above.
+    | Merchant Account specific settings take precedence over "settings" defined above.
     |
     */
 
